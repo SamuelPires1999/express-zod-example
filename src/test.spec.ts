@@ -16,15 +16,13 @@ test("Should respond the primary endpoint successfully", async () => {
   });
 });
 
-// FOR SOME REASON THE TEST BELOW FAILS
-// TODO - Clarify how to test endpoints with input
-
 test("Should respond the input endpoint successfully", async () => {
   const { responseMock, loggerMock, requestMock } = await testEndpoint({
     endpoint: needsInput,
     requestProps: {
+      method: "POST",
       body: {
-        data: { sampleInput: "aaaaaaa" },
+        sampleInput: "aaaaaa",
       },
     },
     // responseProps, configProps, loggerProps
