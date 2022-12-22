@@ -26,23 +26,40 @@ const primaryEndPoint = defaultEndpointsFactory.build({
 const needsInput = defaultEndpointsFactory.build({
   method: "post",
   input: z.object({
-    sampleInput: z.string().min(6)
+    sampleInput: z.string().min(6),
   }),
   output: z.object({
-    validation: z.string()
+    validation: z.string(),
   }),
-  handler: async ({input, logger}) => {
-    logger.info("SUCCESS:",input)
+  handler: async ({ input, logger }) => {
+    logger.info("SUCCESS:", input);
     return {
-      validation: "Input successully validated"
-    }
-  }
-})
+      validation: "Input successully validated",
+    };
+  },
+});
+
+const dateEndPoint = defaultEndpointsFactory.build({
+  method: "post",
+  input: z.object({
+    name: z.string(),
+    birthday: z.dateIn(),
+  }),
+  output: z.object({
+    validation: z.string(),
+  }),
+  handler: async () => {
+    return {
+      validation: "date validated successfully",
+    };
+  },
+});
 
 const routes: Routing = {
   api: {
     hello: primaryEndPoint,
-    world: needsInput
+    world: needsInput,
+    date: dateEndPoint,
   },
 };
 
