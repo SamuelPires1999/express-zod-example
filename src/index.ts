@@ -10,7 +10,7 @@ const config = createConfig({
   logger: { level: "debug", color: true },
 });
 
-const primaryEndPoint = defaultEndpointsFactory.build({
+export const primaryEndPoint = defaultEndpointsFactory.build({
   method: "get",
   input: z.object({}),
   output: z.object({
@@ -18,12 +18,12 @@ const primaryEndPoint = defaultEndpointsFactory.build({
   }),
   handler: async () => {
     return {
-      gretting: "Hahahaha",
+      gretting: "Hello",
     };
   },
 });
 
-const needsInput = defaultEndpointsFactory.build({
+export const needsInput = defaultEndpointsFactory.build({
   method: "post",
   input: z.object({
     sampleInput: z.string().min(6),
@@ -39,7 +39,7 @@ const needsInput = defaultEndpointsFactory.build({
   },
 });
 
-const dateEndPoint = defaultEndpointsFactory.build({
+export const dateEndPoint = defaultEndpointsFactory.build({
   method: "post",
   input: z.object({
     name: z.string(),
